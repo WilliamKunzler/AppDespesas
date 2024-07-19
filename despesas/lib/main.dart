@@ -11,6 +11,7 @@ class TelaPrincipal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(leading: Text("opa")),
+      body: null,
     );
   }
 }
