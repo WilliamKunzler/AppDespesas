@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(TelaPrincipal());
+  runApp(MaterialApp(
+    home: TelaPrincipal(),
+  ));
 }
 
 
 class TelaPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(leading: Text("opa")),
+      body: null,
+    );
   }
 }
 
