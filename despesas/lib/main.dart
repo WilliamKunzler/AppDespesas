@@ -184,7 +184,7 @@ class TelaGrafico extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pop(
                         context,
                         MaterialPageRoute(
                             builder: (context) => TelaPrincipal()));
@@ -196,7 +196,7 @@ class TelaGrafico extends StatelessWidget {
               Spacer(),
               IconButton(
                   onPressed: () {
-                    Navigator.pop(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => TelaCalendario()));
