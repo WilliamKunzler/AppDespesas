@@ -3,8 +3,9 @@ import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: TelaCalendario())
-  );
+    home: TelaPrincipal(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 class TelaPrincipal extends StatelessWidget {
@@ -20,14 +21,16 @@ class TelaPrincipal extends StatelessWidget {
   }
 }
 
-class TelaCalendario extends StatelessWidget{
-  @override 
+class TelaCalendario extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 192, 199, 199),
-      appBar: AppBar(leading: Image.asset("images/logo.png"),  backgroundColor: Color.fromARGB(91, 192, 199, 199),),
+      appBar: AppBar(
+        leading: Image.asset("images/logo.png"),
+        backgroundColor: Color.fromARGB(91, 192, 199, 199),
+      ),
       body: null,
     );
   }
-  
 }
