@@ -30,7 +30,10 @@ class TelaPrincipal extends StatelessWidget {
             ),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => TelaCalendario()));
+            },
           )),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
