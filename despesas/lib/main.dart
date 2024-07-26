@@ -15,7 +15,7 @@ class TelaPrincipal extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: Image.asset("images/logo.png"),
-          backgroundColor: Color.fromARGB(91, 192, 199, 199)),
+          backgroundColor: Color.fromARGB(0, 192, 199, 199)),
       backgroundColor: Color.fromARGB(255, 192, 199, 199),
       body: null,
       floatingActionButton: SizedBox(
