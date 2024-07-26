@@ -196,7 +196,7 @@ class TelaGrafico extends StatelessWidget {
               Spacer(),
               IconButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pop(
                         context,
                         MaterialPageRoute(
                             builder: (context) => TelaCalendario()));
