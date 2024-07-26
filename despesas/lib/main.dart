@@ -5,20 +5,20 @@ import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MaterialApp(
-    home: TelaPrincipal(),
-    debugShowCheckedModeBanner: false,
-  )));
+        home: TelaPrincipal(),
+        debugShowCheckedModeBanner: false,
+      )));
 }
-
 
 class TelaPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: Image.asset("images/logo.png"),
-          backgroundColor: Color.fromARGB(0, 192, 199, 199)),
-      backgroundColor: Color.fromARGB(255, 192, 199, 199),
+        leading: Image.asset(
+          "images/logo.png",
+        ),
+      ),
       body: null,
       floatingActionButton: SizedBox(
           height: 80.0,
@@ -32,15 +32,37 @@ class TelaPrincipal extends StatelessWidget {
             ),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0)),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => TelaCalendario()));
-            },
+            onPressed: () {},
           )),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         child: Container(
           height: 50.0,
+          child: Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => TelaGrafico()));
+                  },
+                  icon: Icon(
+                    Icons.bar_chart,
+                    size: 40.0,
+                  )),
+              Spacer(),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TelaCalendario()));
+                  },
+                  icon: Icon(
+                    Icons.calendar_month_outlined,
+                    size: 40.0,
+                  )),
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -61,16 +83,15 @@ class _TelaCalendarioState extends State<TelaCalendario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 192, 199, 199),
       appBar: AppBar(
         leading: Image.asset("images/logo.png"),
-        backgroundColor: Color.fromARGB(91, 192, 199, 199),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text('Calendário de Despesas',
+            const Text(
+              'Calendário de Despesas',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -102,14 +123,90 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                   fontWeight: FontWeight.bold, // Texto em negrito
                 ),
                 weekendTextStyle: TextStyle(
-                  fontWeight: FontWeight.bold, // Texto de fim de semana em negrito
+                  fontWeight:
+                      FontWeight.bold, // Texto de fim de semana em negrito
                 ),
                 selectedTextStyle: TextStyle(
-                  fontWeight: FontWeight.bold, // Texto do dia selecionado em negrito
+                  fontWeight:
+                      FontWeight.bold, // Texto do dia selecionado em negrito
                 ),
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: Container(
+          height: 50.0,
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TelaCalendario()));
+                },
+                icon: Icon(
+                  Icons.chevron_left_rounded,
+                  size: 40.0,
+                ),
+              ),
+              Spacer(),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => TelaGrafico()));
+                  },
+                  icon: Icon(
+                    Icons.bar_chart,
+                    size: 40.0,
+                  )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TelaGrafico extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: null,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: Container(
+          height: 50.0,
+          child: Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TelaPrincipal()));
+                  },
+                  icon: Icon(
+                    Icons.chevron_left_outlined,
+                    size: 40.0,
+                  )),
+              Spacer(),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TelaCalendario()));
+                  },
+                  icon: Icon(
+                    Icons.calendar_month_outlined,
+                    size: 40.0,
+                  )),
+            ],
+          ),
         ),
       ),
     );
