@@ -1,9 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:despesas/screens/TelaGrafico.dart';
-
-
 
 class TelaCalendario extends StatefulWidget {
   @override
@@ -32,38 +29,42 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16), 
+            SizedBox(height: 16),
             TableCalendar(
               locale: 'pt_BR',
               firstDay: DateTime.utc(2010, 10, 16),
               lastDay: DateTime.utc(2030, 3, 14),
               focusedDay: _focusedDay,
               calendarFormat: _calendarFormat,
+             availableCalendarFormats: {
+                CalendarFormat.month: 'Semana',
+                CalendarFormat.week: 'Mês',
+              },
               selectedDayPredicate: (day) {
                 return isSameDay(_selectedDay, day);
               },
               onDaySelected: (selectedDay, focusedDay) {
                 setState(() {
                   _selectedDay = selectedDay;
-                  _focusedDay = focusedDay; 
+                  _focusedDay = focusedDay;
                 });
               },
               onFormatChanged: (format) {
-                setState(() {
-                  _calendarFormat = format;
-                });
+                if (_calendarFormat != format) {
+                  setState(() {
+                    _calendarFormat = format;
+                  });
+                }
               },
               calendarStyle: CalendarStyle(
                 defaultTextStyle: TextStyle(
-                  fontWeight: FontWeight.bold, 
+                  fontWeight: FontWeight.bold,
                 ),
                 weekendTextStyle: TextStyle(
-                  fontWeight:
-                      FontWeight.bold, 
+                  fontWeight: FontWeight.bold,
                 ),
                 selectedTextStyle: TextStyle(
-                  fontWeight:
-                      FontWeight.bold, 
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -78,10 +79,7 @@ class _TelaCalendarioState extends State<TelaCalendario> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.pop(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TelaCalendario()));
+                  Navigator.pop(context, MaterialPageRoute(builder: (context) => TelaCalendario()));
                 },
                 icon: Icon(
                   Icons.chevron_left_rounded,
@@ -90,14 +88,14 @@ class _TelaCalendarioState extends State<TelaCalendario> {
               ),
               Spacer(),
               IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TelaGrafico()));
-                  },
-                  icon: Icon(
-                    Icons.bar_chart,
-                    size: 40.0,
-                  )),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => TelaGrafico()));
+                },
+                icon: Icon(
+                  Icons.bar_chart,
+                  size: 40.0,
+                ),
+              ),
             ],
           ),
         ),
