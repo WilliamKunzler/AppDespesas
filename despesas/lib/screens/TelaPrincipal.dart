@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/Telagrafico.dart';
+import 'package:despesas/screens/TelaInserir.dart';
 
 class TelaPrincipal extends StatefulWidget {
   @override
@@ -44,6 +45,11 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 },
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 160, horizontal: 8),
+            child: OutlinedButton(
+                onPressed: () {}, child: const Text('Ver Gráficos')),
           ),
           DraggableScrollableSheet(
               initialChildSize: 0.5,
@@ -96,7 +102,10 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             ),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => TelaInserir()));
+            },
           )),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
