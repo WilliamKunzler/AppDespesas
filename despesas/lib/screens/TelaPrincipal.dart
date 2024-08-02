@@ -7,7 +7,11 @@ class TelaPrincipal extends StatefulWidget {
   State<TelaPrincipal> createState() => _TelaPrincipalState();
 }
 
+enum Calendar { diario, semanal, mensal, anual }
+
 class _TelaPrincipalState extends State<TelaPrincipal> {
+  Calendar calendarView = Calendar.diario;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,43 +20,70 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           "images/logo.png",
         ),
       ),
-      body: DraggableScrollableSheet(
-          initialChildSize: 0.5,
-          minChildSize: 0.2,
-          maxChildSize: 1,
-          builder: (context, scrollController) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 240, 241, 240),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16.0),
-                  topRight: Radius.circular(16.0),
-                ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: double.infinity,
+              child: SegmentedButton(
+                segments: <ButtonSegment>[
+                  ButtonSegment(value: Calendar.diario, label: Text("Diário")),
+                  ButtonSegment(
+                      value: Calendar.semanal, label: Text("Semanal")),
+                  ButtonSegment(value: Calendar.mensal, label: Text("Mensal")),
+                  ButtonSegment(value: Calendar.anual, label: Text("Anual")),
+                ],
+                selected: {calendarView},
+                onSelectionChanged: (Set newSelection) {
+                  setState(() {
+                    calendarView = newSelection.first;
+                    String opcao = calendarView.toString().split('.').last;
+                    debugPrint("${opcao}");
+                  });
+                },
               ),
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.house,
-                      color: Colors.green,
-                      size: 30,
-                    ),
-                    title: Text("Casa",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 19)),
-                    subtitle:
-                        Text("20/05/2025", style: TextStyle(fontSize: 15)),
-                    trailing: Text(
-                      "10,00 R\$",
-                      style: TextStyle(color: Colors.red, fontSize: 17),
+            ),
+          ),
+          DraggableScrollableSheet(
+              initialChildSize: 0.5,
+              minChildSize: 0.5,
+              maxChildSize: 1,
+              builder: (context, scrollController) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 240, 241, 240),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16.0),
+                      topRight: Radius.circular(16.0),
                     ),
                   ),
-                ),
-              ),
-            );
-          }),
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.house,
+                          color: Colors.green,
+                          size: 30,
+                        ),
+                        title: Text("Casa",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 19)),
+                        subtitle:
+                            Text("20/05/2025", style: TextStyle(fontSize: 15)),
+                        trailing: Text(
+                          "10,00 R\$",
+                          style: TextStyle(color: Colors.red, fontSize: 17),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+        ],
+      ),
       floatingActionButton: SizedBox(
           height: 80.0,
           width: 80.0,
