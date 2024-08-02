@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/TelaPrincipal.dart';
+import 'package:despesas/screens/Grid.dart';
 
 class TelaInserir extends StatefulWidget {
   @override
@@ -39,24 +40,14 @@ class _TelaInserirState extends State<TelaInserir> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: TextField(
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
                 hintText: "Valor da despesa", border: OutlineInputBorder()),
           ),
         ),
-        Container(
-          width: double.infinity,
-          height: 300,
-          color: Colors.amber,
-          child: GridView.count(
-            crossAxisCount: 4,
-            children: [
-              // ElevatedButton.icon(onPressed: onPressed, icon: icon, label: label)
-            ],
-          ),
-        )
+        Grid(),
       ]),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
