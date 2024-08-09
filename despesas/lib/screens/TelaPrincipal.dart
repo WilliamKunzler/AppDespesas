@@ -116,20 +116,31 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                                 IconData? icone = icones[area];
                                 Color? cores = cor[area];
 
-                                return ListTile(
-                                  title: Text(" ${item['descricao']}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 19)),
-                                  subtitle: Text("${item['data']}",
-                                      style: TextStyle(fontSize: 15)),
-                                  leading: Icon(
-                                    icone,
-                                    color: cores,
+                                return Dismissible(
+                                  key: Key(item['id']
+                                      .toString()), // Aqui você deve fornecer uma key única para cada item.
+                                  onDismissed: (direction) {
+                                    // Aqui você pode manipular o evento de exclusão, como remover o item da lista.
+                                    setState(() {
+                                      dados.remove(
+                                          item); // Remove o item da lista de dados.
+                                    });
+                                  },
+                                  child: ListTile(
+                                    title: Text(" ${item['descricao']}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19)),
+                                    subtitle: Text("${item['data']}",
+                                        style: TextStyle(fontSize: 15)),
+                                    leading: Icon(
+                                      icone,
+                                      color: cores,
+                                    ),
+                                    trailing: Text("R\$ ${item['valor']}",
+                                        style: TextStyle(
+                                            color: Colors.red, fontSize: 17)),
                                   ),
-                                  trailing: Text("R\$ ${item['valor']}",
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 17)),
                                 );
                               }).toList(),
                             );
