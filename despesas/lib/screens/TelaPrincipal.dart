@@ -1,8 +1,8 @@
+import 'package:despesas/database/dao/despesasdao.dart';
 import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/Telagrafico.dart';
 import 'package:despesas/screens/TelaInserir.dart';
-import 'package:despesas/screens/listTile.dart';
 
 class TelaPrincipal extends StatefulWidget {
   @override
@@ -58,20 +58,52 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               maxChildSize: 1,
               builder: (context, scrollController) {
                 return Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 240, 241, 240),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.0),
-                      topRight: Radius.circular(16.0),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 240, 241, 240),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16.0),
+                        topRight: Radius.circular(16.0),
+                      ),
                     ),
-                  ),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Padding(
+                    child: SingleChildScrollView(
+                      controller: scrollController,
+                      child: Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Container()),
-                  ),
-                );
+                        child: FutureBuilder(
+                          initialData: [],
+                          future: findall(),
+                          builder: (context, snapshot) {
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.none:
+                                return Center(
+                                  child: Text(
+                                      "Houve um erro de Conexão com o Banco de Dados"),
+                                );
+                              case ConnectionState.active:
+                              case ConnectionState.waiting:
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              case ConnectionState.done:
+                                List<Map> dados = snapshot.data as List<Map>;
+
+                                return ListView.builder(
+                                  itemCount: dados.length,
+                                  itemBuilder: (context, index) {
+                                    return ListTile(
+                                      title: Text(" ${dados[index]['descricao']}"),
+                                      subtitle: Text("${dados[index]['data']}"),
+                                      leading: const Icon(Icons.access_alarm),
+                                      trailing:
+                                          Text("${dados[index]['valor']}"),
+                                    );
+                                  },
+                                );
+                            }
+                          },
+                        ),
+                      ),
+                    ));
               }),
         ],
       ),

@@ -6,7 +6,7 @@ import 'package:despesas/database/dao/despesasdao.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'dart:io';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux) {
     sqfliteFfiInit();
@@ -14,6 +14,7 @@ void main() {
   }
 
   debugPrint(findall().toString());
+  List dados = await findall() as List;
 
   initializeDateFormatting().then((_) => runApp(MaterialApp(
         home: TelaPrincipal(),
