@@ -147,17 +147,9 @@ class _TelaInserirState extends State<TelaInserir> {
                       String descpts = descpt.text;
                       double valores = double.tryParse(valor.text) ?? 0;
                       String _pressedValues = _pressedValue.toString();
-<<<<<<< HEAD
                       insertDespesas(Despesas(descricao: descpts, valor: valores, area: _pressedValues, data: dataAtual));
                       Navigator.pop(context,
                       MaterialPageRoute(builder: (context)=>TelaPrincipal()));
-=======
-                      print(descpts);
-                      print(valores);
-                      print(_pressedValues);
-                      print(dataSomente);
-                      // insertDespesas(Despesas(descricao: descpts, valor: valores, area: _pressedValues, data: dataAtual));
->>>>>>> 780afe9168518d65bff8d82e314a5a580917015f
                     });
                   }
                 },
