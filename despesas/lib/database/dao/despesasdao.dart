@@ -22,5 +22,5 @@ return dados;
 Future<int> deleteByID(int id)async{
   debugPrint("Deletando o ID: $id");
   Database db = await getDatabase();
-  return db.delete('dogs', where: "id = ?", whereArgs: [id]);
+  return db.delete('despesas', where: "id = ?", whereArgs: [id]);
 }
