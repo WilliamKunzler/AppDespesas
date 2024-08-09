@@ -44,7 +44,6 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                   },
                   selectedDayPredicate: (day) {
                     return isSameDay(_selectedDay, day);
-                    
                   },
                   onDaySelected: (selectedDay, focusedDay) {
                     setState(() {
