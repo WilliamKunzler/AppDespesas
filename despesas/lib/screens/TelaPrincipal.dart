@@ -81,22 +81,24 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
                           case ConnectionState.done:
                             List<Map> dados = snapshot.data as List<Map>;
-                            return Column(
-                              children: dados.map((item) {
-                                return ListTile(
-                                  title: Text(" ${item['descricao']}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 19)),
-                                  subtitle: Text("${item['data']}",
-                                      style: TextStyle(fontSize: 15)),
-                                  leading: const Icon(Icons.access_alarm),
-                                  trailing: Text("R\$ ${item['valor']}",
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 17)),
-                                );
-                              }).toList(),
-                            );
+                          // return Column(
+                          //   children: dados.map((item) {
+                          //     return Dismissible(
+                          //       child: ListTile(
+                          //         title: Text(" ${item['descricao']}",
+                          //             style: TextStyle(
+                          //                 fontWeight: FontWeight.bold,
+                          //                 fontSize: 19)),
+                          //         subtitle: Text("${item['data']}",
+                          //             style: TextStyle(fontSize: 15)),
+                          //         leading: const Icon(Icons.access_alarm),
+                          //         trailing: Text("R\$ ${item['valor']}",
+                          //             style: TextStyle(
+                          //                 color: Colors.red, fontSize: 17)),
+                          //       ),
+                          //     );
+                          //   }).toList(),
+                          // );
                           default:
                             return Text("ERRO");
                         }
