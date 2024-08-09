@@ -10,11 +10,11 @@ class TelaGrafico extends StatefulWidget {
 
 class _TelaGraficoState extends State<TelaGrafico> {
   final List<_PieData> data = [
-  _PieData('David', 25, '25%'),
-  _PieData('Steve', 38, '38%'),
-  _PieData('Jack', 34, '34%'),
-  _PieData('Others', 3, '3%')
-];
+    _PieData('David', 25, '25%'),
+    _PieData('Steve', 38, '38%'),
+    _PieData('Jack', 34, '34%'),
+    _PieData('Others', 3, '3%')
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +25,26 @@ class _TelaGraficoState extends State<TelaGrafico> {
         ),
       ),
       body: Center(
-        
-      child:SfCircularChart(
-      title: ChartTitle(text: 'Sales by sales person'),
-      legend: Legend(isVisible: true),
-      series: <PieSeries<_PieData, String>>[
-        PieSeries<_PieData, String>(
-          explode: true,
-          explodeIndex: 0,
-          dataSource: data ,
-          xValueMapper: (_PieData data, _) => data.xData,
-          yValueMapper: (_PieData data, _) => data.yData,
-          dataLabelMapper: (_PieData data, _) => data.text,
-          dataLabelSettings: DataLabelSettings(isVisible: true)),
-      ]
-      )
-    
+        child: Container(
+          // Adicione um Container para limitar o tamanho e ajustar o layout
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.width * 0.8,
+          child: SfCircularChart(
+            title: ChartTitle(text: 'Sales by sales person'),
+            legend: Legend(isVisible: true),
+            series: <PieSeries<_PieData, String>>[
+              PieSeries<_PieData, String>(
+                explode: true,
+                explodeIndex: 0,
+                dataSource: data,
+                xValueMapper: (_PieData data, _) => data.xData,
+                yValueMapper: (_PieData data, _) => data.yData,
+                dataLabelMapper: (_PieData data, _) => data.text,
+                dataLabelSettings: DataLabelSettings(isVisible: true),
+              ),
+            ],
+          ),
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -49,28 +53,26 @@ class _TelaGraficoState extends State<TelaGrafico> {
           child: Row(
             children: [
               IconButton(
-                  onPressed: () {
-                    Navigator.pop(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TelaPrincipal()));
-                  },
-                  icon: Icon(
-                    Icons.chevron_left_rounded,
-                    size: 40.0,
-                  )),
+                onPressed: () {
+                  Navigator.pop(
+                      context, MaterialPageRoute(builder: (context) => TelaPrincipal()));
+                },
+                icon: Icon(
+                  Icons.chevron_left_rounded,
+                  size: 40.0,
+                ),
+              ),
               Spacer(),
               IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TelaCalendario()));
-                  },
-                  icon: Icon(
-                    Icons.calendar_month_outlined,
-                    size: 40.0,
-                  )),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => TelaCalendario()));
+                },
+                icon: Icon(
+                  Icons.calendar_month_outlined,
+                  size: 40.0,
+                ),
+              ),
             ],
           ),
         ),
@@ -80,8 +82,8 @@ class _TelaGraficoState extends State<TelaGrafico> {
 }
 
 class _PieData {
- _PieData(this.xData, this.yData, [this.text]);
- final String xData;
- final num yData;
- String? text;
+  _PieData(this.xData, this.yData, [this.text]);
+  final String xData;
+  final num yData;
+  final String? text;
 }
