@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/TelaPrincipal.dart';
-// import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class TelaGrafico extends StatefulWidget {
   @override
@@ -9,6 +9,13 @@ class TelaGrafico extends StatefulWidget {
 }
 
 class _TelaGraficoState extends State<TelaGrafico> {
+  final List<_PieData> data = [
+  _PieData('David', 25, '25%'),
+  _PieData('Steve', 38, '38%'),
+  _PieData('Jack', 34, '34%'),
+  _PieData('Others', 3, '3%')
+];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,22 +25,22 @@ class _TelaGraficoState extends State<TelaGrafico> {
         ),
       ),
       body: Center(
-        child: Container(),
-        // child: SfCartesianChart(
-        //     primaryXAxis: CategoryAxis(),
-        //     series: <LineSeries<SalesData, String>>[
-        //   LineSeries<SalesData, String>(
-        //       // Bind data source
-        //       dataSource: <SalesData>[
-        //         SalesData('Jan', 35),
-        //         SalesData('Feb', 28),
-        //         SalesData('Mar', 34),
-        //         SalesData('Apr', 32),
-        //         SalesData('May', 40)
-        //       ],
-        //       xValueMapper: (SalesData sales, _) => sales.year,
-        //       yValueMapper: (SalesData sales, _) => sales.sales)
-        // ])),
+        
+      child:SfCircularChart(
+      title: ChartTitle(text: 'Sales by sales person'),
+      legend: Legend(isVisible: true),
+      series: <PieSeries<_PieData, String>>[
+        PieSeries<_PieData, String>(
+          explode: true,
+          explodeIndex: 0,
+          dataSource: data ,
+          xValueMapper: (_PieData data, _) => data.xData,
+          yValueMapper: (_PieData data, _) => data.yData,
+          dataLabelMapper: (_PieData data, _) => data.text,
+          dataLabelSettings: DataLabelSettings(isVisible: true)),
+      ]
+      )
+    
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -72,8 +79,9 @@ class _TelaGraficoState extends State<TelaGrafico> {
   }
 }
 
-class SalesData {
-  SalesData(this.year, this.sales);
-  final String year;
-  final double sales;
+class _PieData {
+ _PieData(this.xData, this.yData, [this.text]);
+ final String xData;
+ final num yData;
+ String? text;
 }
