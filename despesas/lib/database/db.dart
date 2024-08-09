@@ -14,7 +14,7 @@ Future<Database> getDatabase() async {
         'descricao TEXT, '
         'valor DOUBLE, '
         'area TEXT, '
-        'data DATETIME)'
+        'data TEXT)'
       );
     },
   );

@@ -151,7 +151,7 @@ class _TelaInserirState extends State<TelaInserir> {
                       print(valores);
                       print(_pressedValues);
                       print(dataSomente);
-                      // insertDespesas(Despesas(descricao: descpts, valor: valores, area: _pressedValues, data: dataAtual));
+                      insertDespesas(Despesas(descricao: descpts, valor: valores, area: _pressedValues, data: dataSomente));
                     });
                   }
                 },
