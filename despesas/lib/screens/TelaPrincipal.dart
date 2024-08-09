@@ -13,6 +13,23 @@ enum Calendar { diario, semanal, mensal, anual }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
   Calendar calendarView = Calendar.diario;
+  Map icones = {
+    "Casa": Icons.home,
+    "Alimentação": Icons.local_pizza,
+    "Saúde": Icons.health_and_safety,
+    "Transporte": Icons.emoji_transportation,
+    "Presentes": Icons.card_giftcard_sharp,
+    "Outros": Icons.add,
+  };
+
+  Map cor = {
+    "Casa": Color.fromARGB(206, 86, 231, 91),
+    "Alimentação": Color.fromARGB(255, 230, 146, 227),
+    "Saúde": Color.fromARGB(255, 91, 155, 207),
+    "Transporte": Color.fromARGB(214, 230, 97, 87),
+    "Presentes": Color.fromARGB(172, 32, 216, 240),
+    "Outros": Color.fromARGB(207, 247, 169, 53),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +100,10 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                             List<Map> dados = snapshot.data as List<Map>;
                             return Column(
                               children: dados.map((item) {
+                                String area = item['area'];
+                                IconData? icone = icones[area];
+                                Color? cores = cor[area];
+
                                 return ListTile(
                                   title: Text(" ${item['descricao']}",
                                       style: TextStyle(
@@ -90,7 +111,10 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                                           fontSize: 19)),
                                   subtitle: Text("${item['data']}",
                                       style: TextStyle(fontSize: 15)),
-                                  leading: const Icon(Icons.access_alarm),
+                                  leading: Icon(
+                                    icone,
+                                    color: cores,
+                                  ),
                                   trailing: Text("R\$ ${item['valor']}",
                                       style: TextStyle(
                                           color: Colors.red, fontSize: 17)),
