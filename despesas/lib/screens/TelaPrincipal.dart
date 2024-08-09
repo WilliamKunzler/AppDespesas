@@ -147,7 +147,10 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 borderRadius: BorderRadius.circular(50.0)),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => TelaInserir()));
+                      MaterialPageRoute(builder: (context) => TelaInserir()))
+                  .then((value) {
+                setState(() {});
+              });
             },
           )),
       bottomNavigationBar: BottomAppBar(
