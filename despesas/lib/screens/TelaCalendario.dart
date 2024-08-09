@@ -63,7 +63,10 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                           print("Despesa encontrada: ${row['id']} - ${row['valor']}");
                         }
                       } else {
-                        print("Nenhuma despesa encontrada para a data $formattedDate.");
+                         final snackBar = SnackBar(
+                      content:  Text("Nenhuma despesa encontrada para a data $formattedDate."),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
                     },
                   onFormatChanged: (format) {
