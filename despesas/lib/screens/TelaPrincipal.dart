@@ -68,7 +68,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   child: SingleChildScrollView(
                     controller: scrollController,
                     child: Padding(
-                        padding: const EdgeInsets.all(20.0), child: Despesa()),
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container()),
                   ),
                 );
               }),
