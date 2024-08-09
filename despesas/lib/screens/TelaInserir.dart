@@ -1,8 +1,10 @@
+import 'package:despesas/database/dao/despesasdao.dart';
 import 'package:despesas/screens/TelaGrafico.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/TelaPrincipal.dart';
+import 'package:despesas/model/despesas.dart';
 
 class TelaInserir extends StatefulWidget {
   @override
@@ -130,12 +132,20 @@ class _TelaInserirState extends State<TelaInserir> {
             ),
             OutlinedButton(
                 onPressed: () {
+                  DateTime dataAtual = DateTime.now();
                   print(pressed);
                   if (valor.text == "" || descpt.text == "") {
                     final snackBar = SnackBar(
                       content: const Text('Campos não preenchidos!!'),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                  else{
+                    setState(() {
+                      String descpts = descpt.text;
+                      double valores = double.tryParse(valor.text) ?? 0;
+                      insertDespesas(Despesas(descricao: descpts, valor: valores, area: area, data: dataAtual));
+                    });
                   }
                 },
                 child: const Text(
