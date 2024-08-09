@@ -1,8 +1,8 @@
+import 'package:despesas/database/dao/despesasdao.dart';
 import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/Telagrafico.dart';
 import 'package:despesas/screens/TelaInserir.dart';
-import 'package:despesas/screens/listTile.dart';
 
 class TelaPrincipal extends StatefulWidget {
   @override
@@ -53,26 +53,54 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 onPressed: () {}, child: const Text('Ver Gráficos')),
           ),
           DraggableScrollableSheet(
-              initialChildSize: 0.5,
-              minChildSize: 0.5,
-              maxChildSize: 1,
-              builder: (context, scrollController) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 240, 241, 240),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.0),
-                      topRight: Radius.circular(16.0),
+            initialChildSize: 0.5,
+            minChildSize: 0.5,
+            maxChildSize: 1,
+            builder: (context, scrollController) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 240, 241, 240),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16.0),
+                    topRight: Radius.circular(16.0),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: FutureBuilder(
+                      initialData: [],
+                      future: findall(),
+                      builder: (context, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.active:
+                          case ConnectionState.none:
+                          case ConnectionState.waiting:
+                            return Text("ESPERANDO");
+
+                          case ConnectionState.done:
+                            List<Map> dados = snapshot.data as List<Map>;
+                            return Column(
+                              children: dados.map((item) {
+                                return ListTile(
+                                  title: Text(" ${item['descricao']}"),
+                                  subtitle: Text("${item['data']}"),
+                                  leading: const Icon(Icons.access_alarm),
+                                  trailing: Text("${item['valor']}"),
+                                );
+                              }).toList(),
+                            );
+                          default:
+                            return Text("ERRO");
+                        }
+                      },
                     ),
                   ),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container()),
-                  ),
-                );
-              }),
+                ),
+              );
+            },
+          )
         ],
       ),
       floatingActionButton: SizedBox(

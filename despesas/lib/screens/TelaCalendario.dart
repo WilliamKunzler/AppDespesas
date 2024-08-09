@@ -3,7 +3,6 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:despesas/screens/TelaGrafico.dart';
 import 'package:despesas/database/dao/despesasdao.dart';
 
-
 class TelaCalendario extends StatefulWidget {
   @override
   _TelaCalendarioState createState() => _TelaCalendarioState();
@@ -13,8 +12,7 @@ class _TelaCalendarioState extends State<TelaCalendario> {
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  List<String> despesas = []; 
-
+  Future<List<Map<String, dynamic>>>? _despesasFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -50,25 +48,14 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                     return isSameDay(_selectedDay, day);
                   },
                   onDaySelected: (selectedDay, focusedDay) async {
-                      setState(() {
-                        _selectedDay = selectedDay;
-                        _focusedDay = focusedDay;
-                      });
-
-                      // Formata a data selecionada para o formato necessário pelo banco de dados
-                      String formattedDate = "${selectedDay.day.toString().padLeft(2, '0')}-${selectedDay.month.toString().padLeft(2, '0')}-${selectedDay.year}";
-                      List<Map<String, dynamic>> results = await selectData(formattedDate);
-                      if (results.isNotEmpty) {
-                        for (var row in results) {
-                          print("Despesa encontrada: ${row['id']} - ${row['valor']}");
-                        }
-                      } else {
-                         final snackBar = SnackBar(
-                      content:  Text("Nenhuma despesa encontrada para a data $formattedDate."),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }
-                    },
+                    setState(() {
+                      _selectedDay = selectedDay;
+                      _focusedDay = focusedDay;
+                      String formattedDate =
+                          "${selectedDay.day.toString().padLeft(2, '0')}-${selectedDay.month.toString().padLeft(2, '0')}-${selectedDay.year}";
+                      _despesasFuture = selectData(formattedDate);
+                    });
+                  },
                   onFormatChanged: (format) {
                     if (_calendarFormat != format) {
                       setState(() {
@@ -86,6 +73,32 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                     selectedTextStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
+                  ),
+                ),
+                SizedBox(height: 16),
+                Expanded(
+                  child: FutureBuilder<List<Map<String, dynamic>>>(
+                    future: _despesasFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text("Erro: ${snapshot.error}"));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return Center(child: Text("Nenhuma despesa encontrada."));
+                      } else {
+                        return ListView(
+                          children: snapshot.data!.map((item) {
+                            return ListTile(
+                              title: Text(" ${item['descricao']}"),
+                              subtitle: Text("${item['data']}"),
+                              leading: const Icon(Icons.access_alarm),
+                              trailing: Text("${item['valor']}"),
+                            );
+                          }).toList(),
+                        );
+                      }
+                    },
                   ),
                 ),
               ],
@@ -106,9 +119,7 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                 ),
                 child: ListView(
                   controller: scrollController,
-                  children: [
-  
-                  ],
+                  children: [],
                 ),
               );
             },
