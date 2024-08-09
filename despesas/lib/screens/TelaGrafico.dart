@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/TelaPrincipal.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class TelaGrafico extends StatefulWidget {
   @override
@@ -24,28 +23,7 @@ class _TelaGraficoState extends State<TelaGrafico> {
           "images/logo.png",
         ),
       ),
-      body: Center(
-        child: Container(
-          // Adicione um Container para limitar o tamanho e ajustar o layout
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.width * 0.8,
-          child: SfCircularChart(
-            title: ChartTitle(text: 'Sales by sales person'),
-            legend: Legend(isVisible: true),
-            series: <PieSeries<_PieData, String>>[
-              PieSeries<_PieData, String>(
-                explode: true,
-                explodeIndex: 0,
-                dataSource: data,
-                xValueMapper: (_PieData data, _) => data.xData,
-                yValueMapper: (_PieData data, _) => data.yData,
-                dataLabelMapper: (_PieData data, _) => data.text,
-                dataLabelSettings: DataLabelSettings(isVisible: true),
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: Center(),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         child: Container(
@@ -54,8 +32,8 @@ class _TelaGraficoState extends State<TelaGrafico> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.pop(
-                      context, MaterialPageRoute(builder: (context) => TelaPrincipal()));
+                  Navigator.pop(context,
+                      MaterialPageRoute(builder: (context) => TelaPrincipal()));
                 },
                 icon: Icon(
                   Icons.chevron_left_rounded,
@@ -66,7 +44,9 @@ class _TelaGraficoState extends State<TelaGrafico> {
               IconButton(
                 onPressed: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => TelaCalendario()));
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TelaCalendario()));
                 },
                 icon: Icon(
                   Icons.calendar_month_outlined,
