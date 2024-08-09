@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/Telagrafico.dart';
 import 'package:despesas/screens/TelaInserir.dart';
+import 'package:despesas/screens/listTile.dart';
 
 class TelaPrincipal extends StatefulWidget {
   @override
@@ -67,24 +68,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   child: SingleChildScrollView(
                     controller: scrollController,
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.house,
-                          color: Colors.green,
-                          size: 30,
-                        ),
-                        title: Text("Casa",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 19)),
-                        subtitle:
-                            Text("20/05/2025", style: TextStyle(fontSize: 15)),
-                        trailing: Text(
-                          "10,00 R\$",
-                          style: TextStyle(color: Colors.red, fontSize: 17),
-                        ),
-                      ),
-                    ),
+                        padding: const EdgeInsets.all(20.0), child: Despesa()),
                   ),
                 );
               }),

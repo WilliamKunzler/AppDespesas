@@ -11,44 +11,73 @@ class TelaInserir extends StatefulWidget {
 }
 
 class _TelaInserirState extends State<TelaInserir> {
+  TextEditingController descpt = TextEditingController();
+  TextEditingController valor = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset("images/logo.png"),
       ),
-      body: Column(children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-            child: const Text(
-              'Adicionar Despesas',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+      body: ListView(
+        children: [
+          Column(children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                child: const Text(
+                  'Adicionar Despesas',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-        Padding(
-          padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
-          child: TextField(
-            // controller: descpt,
-            decoration: InputDecoration(
-                hintText: "Descrição da despesa", border: OutlineInputBorder()),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          child: TextField(
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-                hintText: "Valor da despesa", border: OutlineInputBorder()),
-          ),
-        ),
-        Grid(),
-      ]),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 50, bottom: 20),
+              child: TextField(
+                controller: descpt,
+                decoration: InputDecoration(
+                    hintText: "Descrição da despesa",
+                    border: OutlineInputBorder()),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
+              child: TextField(
+                controller: valor,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    hintText: "Valor da despesa", border: OutlineInputBorder()),
+              ),
+            ),
+            Grid(),
+            OutlinedButton(
+                onPressed: () {
+                  print(
+                    valor.text,
+                  );
+                  print(
+                    descpt.text,
+                  );
+
+                  if (valor.text == "" || descpt.text == "") {
+                    final snackBar = SnackBar(
+                      content: const Text('Campos não preenchidos!!'),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
+                child: const Text(
+                  'Salvar',
+                  style: TextStyle(color: Colors.black),
+                )),
+          ]),
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         child: Container(

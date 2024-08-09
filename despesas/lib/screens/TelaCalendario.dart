@@ -36,7 +36,7 @@ class _TelaCalendarioState extends State<TelaCalendario> {
               lastDay: DateTime.utc(2030, 3, 14),
               focusedDay: _focusedDay,
               calendarFormat: _calendarFormat,
-             availableCalendarFormats: {
+              availableCalendarFormats: {
                 CalendarFormat.month: 'Semana',
                 CalendarFormat.week: 'Mês',
               },
@@ -79,7 +79,10 @@ class _TelaCalendarioState extends State<TelaCalendario> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context, MaterialPageRoute(builder: (context) => TelaCalendario()));
+                  Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TelaCalendario()));
                 },
                 icon: Icon(
                   Icons.chevron_left_rounded,
@@ -89,7 +92,8 @@ class _TelaCalendarioState extends State<TelaCalendario> {
               Spacer(),
               IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => TelaGrafico()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TelaGrafico()));
                 },
                 icon: Icon(
                   Icons.bar_chart,

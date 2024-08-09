@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Grid extends StatelessWidget {
+class Grid extends StatefulWidget {
+  @override
+  State<Grid> createState() => _GridState();
+}
+
+class _GridState extends State<Grid> {
   List area = [
     "Casa",
     "Alimentação",
     "Saúde",
-    "Transportes",
+    "Transporte",
     "Presentes",
     "Outros"
   ];
@@ -29,6 +34,8 @@ class Grid extends StatelessWidget {
     Icons.add,
   ];
 
+  int? selected;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,14 +49,21 @@ class Grid extends StatelessWidget {
           itemCount: area.length,
           itemBuilder: (BuildContext context, int index) {
             return ElevatedButton(
-              onPressed: () {},
               style: ElevatedButton.styleFrom(
                   fixedSize: Size(100, 100),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
-                  backgroundColor: cor[index],
+                  backgroundColor:
+                      selected == index ? Colors.black : cor[index],
                   foregroundColor: Colors.white),
+              onPressed: () {
+                String pressed = area[index];
+                print(pressed);
+                setState(() {
+                  selected = selected == index ? null : index;
+                });
+              },
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
