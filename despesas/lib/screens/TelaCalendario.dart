@@ -57,8 +57,8 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                   focusedDay: _focusedDay,
                   calendarFormat: _calendarFormat,
                   availableCalendarFormats: {
-                    CalendarFormat.month: 'Mês',
-                    CalendarFormat.week: 'Semana',
+                    CalendarFormat.month: 'Semana',
+                    CalendarFormat.week: 'Mês',
                   },
                   selectedDayPredicate: (day) {
                     return isSameDay(_selectedDay, day);
