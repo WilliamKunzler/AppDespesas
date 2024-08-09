@@ -6,13 +6,12 @@ import 'package:despesas/database/dao/despesasdao.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'dart:io';
 
-
 void main() {
-  if (Platform.isWindows || Platform.isLinux){
+  WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux) {
     sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
   }
-
-  databaseFactory = databaseFactoryFfi;
 
   debugPrint(findall().toString());
 
@@ -21,8 +20,3 @@ void main() {
         debugShowCheckedModeBanner: false,
       )));
 }
-
-
-
-
-
