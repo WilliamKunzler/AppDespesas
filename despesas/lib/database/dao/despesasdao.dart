@@ -3,7 +3,7 @@ import 'package:despesas/database/db.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../model/despesas.dart';
 
-Future<int> insertDog(Despesas despesas) async{
+Future<int> insertDespesas(Despesas despesas) async{
   Database db = await getDatabase();
   return db.insert('despesas', despesas.toMap(),
    conflictAlgorithm: ConflictAlgorithm.replace);

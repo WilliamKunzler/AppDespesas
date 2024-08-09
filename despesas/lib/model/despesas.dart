@@ -12,7 +12,7 @@ class Despesas {
   }
   @override
   String toString(){
-    return 'Dog {descricao: $descricao, valor: $valor, area: $area, data: $data}';
+    return 'Despesas {descricao: $descricao, valor: $valor, area: $area, data: $data}';
   }
 
 }
