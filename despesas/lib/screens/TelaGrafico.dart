@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
 import 'package:despesas/screens/TelaPrincipal.dart';
+// import 'package:syncfusion_flutter_charts/charts.dart';
 
 class TelaGrafico extends StatefulWidget {
   @override
   State<TelaGrafico> createState() => _TelaGraficoState();
 }
 
-enum Calendar { diario, semanal, mensal, anual }
-
 class _TelaGraficoState extends State<TelaGrafico> {
-  Calendar calendarView = Calendar.diario;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,32 +17,23 @@ class _TelaGraficoState extends State<TelaGrafico> {
           "images/logo.png",
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: double.infinity,
-              child: SegmentedButton(
-                segments: <ButtonSegment>[
-                  ButtonSegment(value: Calendar.diario, label: Text("Diário")),
-                  ButtonSegment(
-                      value: Calendar.semanal, label: Text("Semanal")),
-                  ButtonSegment(value: Calendar.mensal, label: Text("Mensal")),
-                  ButtonSegment(value: Calendar.anual, label: Text("Anual")),
-                ],
-                selected: {calendarView},
-                onSelectionChanged: (Set newSelection) {
-                  setState(() {
-                    calendarView = newSelection.first;
-                    String opcao = calendarView.toString().split('.').last;
-                    debugPrint("${opcao}");
-                  });
-                },
-              ),
-            ),
-          ),
-        ],
+      body: Center(
+        child: Container(),
+        // child: SfCartesianChart(
+        //     primaryXAxis: CategoryAxis(),
+        //     series: <LineSeries<SalesData, String>>[
+        //   LineSeries<SalesData, String>(
+        //       // Bind data source
+        //       dataSource: <SalesData>[
+        //         SalesData('Jan', 35),
+        //         SalesData('Feb', 28),
+        //         SalesData('Mar', 34),
+        //         SalesData('Apr', 32),
+        //         SalesData('May', 40)
+        //       ],
+        //       xValueMapper: (SalesData sales, _) => sales.year,
+        //       yValueMapper: (SalesData sales, _) => sales.sales)
+        // ])),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -82,4 +70,10 @@ class _TelaGraficoState extends State<TelaGrafico> {
       ),
     );
   }
+}
+
+class SalesData {
+  SalesData(this.year, this.sales);
+  final String year;
+  final double sales;
 }

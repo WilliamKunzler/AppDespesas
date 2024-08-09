@@ -1,7 +1,7 @@
 import 'package:despesas/database/dao/despesasdao.dart';
+import 'package:despesas/screens/TelaGrafico.dart';
 import 'package:flutter/material.dart';
 import 'package:despesas/screens/TelaCalendario.dart';
-import 'package:despesas/screens/Telagrafico.dart';
 import 'package:despesas/screens/TelaInserir.dart';
 
 class TelaPrincipal extends StatefulWidget {
