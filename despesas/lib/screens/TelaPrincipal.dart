@@ -65,9 +65,21 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 160, horizontal: 8),
-            child: OutlinedButton(
-                onPressed: () {}, child: const Text('Ver Gráficos')),
+            padding: const EdgeInsets.symmetric(vertical: 140, horizontal: 30),
+            child: Container(
+              child: Row(
+                children: [
+                  OutlinedButton(
+                      onPressed: () {}, child: const Text('Ver Gráficos')),
+                  Spacer(),
+                  Icon(
+                    Icons.pie_chart,
+                    size: 130,
+                    color: Colors.deepOrangeAccent,
+                  )
+                ],
+              ),
+            ),
           ),
           DraggableScrollableSheet(
             initialChildSize: 0.5,
