@@ -23,3 +23,14 @@ Future<int> deleteByID(int id) async {
   Database db = await getDatabase();
   return db.delete('despesas', where: "id = ?", whereArgs: [id]);
 }
+
+Future<List<Map<String, dynamic>>> selectData(String data) async {
+  debugPrint("Procurando: $data");
+  Database db = await getDatabase();
+  List<Map<String, dynamic>> result = await db.query(
+    'despesas', 
+    where: "data = ?", 
+    whereArgs: [data]
+  ); 
+  return result;
+}
