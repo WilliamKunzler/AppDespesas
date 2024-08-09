@@ -79,8 +79,8 @@ class _TelaCalendarioState extends State<TelaCalendario> {
             ),
           ),
           DraggableScrollableSheet(
-            initialChildSize: 0.2,
-            minChildSize: 0.2,
+            initialChildSize: 0.3,
+            minChildSize: 0.3,
             maxChildSize: 1,
             builder: (BuildContext context, ScrollController scrollController) {
               return Container(
@@ -101,7 +101,8 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                       } else if (snapshot.hasError) {
                         return Center(child: Text("Erro: ${snapshot.error}"));
                       } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return Center(child: Text("Nenhuma despesa encontrada."));
+                        return Center(
+                            child: Text("Nenhuma despesa encontrada."));
                       } else {
                         return ListView(
                           controller: scrollController,
