@@ -84,10 +84,16 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                             return Column(
                               children: dados.map((item) {
                                 return ListTile(
-                                  title: Text(" ${item['descricao']}"),
-                                  subtitle: Text("${item['data']}"),
+                                  title: Text(" ${item['descricao']}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 19)),
+                                  subtitle: Text("${item['data']}",
+                                      style: TextStyle(fontSize: 15)),
                                   leading: const Icon(Icons.access_alarm),
-                                  trailing: Text("${item['valor']}"),
+                                  trailing: Text("R\$ ${item['valor']}",
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 17)),
                                 );
                               }).toList(),
                             );
