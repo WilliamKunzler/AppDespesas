@@ -132,28 +132,29 @@ class _TelaInserirState extends State<TelaInserir> {
             ),
             OutlinedButton(
                 onPressed: () {
-                  print(valor.text);
-                  print(descpt.text);
-                  print(_pressedValue);
                   if (valor.text == "" ||
                       descpt.text == "" ||
                       _pressedValue == null) {
-                  DateTime dataAtual = DateTime.now();
-                  if (valor.text == "" || descpt.text == "") {
                     final snackBar = SnackBar(
                       content: const Text('Campos não preenchidos!!'),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                  else{
+                  } else {
                     setState(() {
+                      DateTime dataAtual = DateTime.now();
+                      String dataSomente =
+                          "${dataAtual.day.toString().padLeft(2, '0')}-${dataAtual.month.toString().padLeft(2, '0')}-${dataAtual.year}";
                       String descpts = descpt.text;
                       double valores = double.tryParse(valor.text) ?? 0;
                       String _pressedValues = _pressedValue.toString();
-                      insertDespesas(Despesas(descricao: descpts, valor: valores, area: _pressedValues, data: dataAtual));
+                      print(descpts);
+                      print(valores);
+                      print(_pressedValues);
+                      print(dataSomente);
+                      // insertDespesas(Despesas(descricao: descpts, valor: valores, area: _pressedValues, data: dataAtual));
                     });
                   }
-                }},
+                },
                 child: const Text(
                   'Salvar',
                   style: TextStyle(color: Colors.black),
