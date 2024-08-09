@@ -54,7 +54,8 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                     });
 
                     // Formata a data selecionada para o formato necessário pelo banco de dados
-                    String formattedDate = selectedDay.toString().split(' ')[0];
+                    String formattedDate =
+                        "${selectedDay.day.toString().padLeft(2, '0')}-${selectedDay.month.toString().padLeft(2, '0')}-${selectedDay.year}";
                     List<Map<String, dynamic>> results =
                         await selectData(formattedDate);
                     if (results.isNotEmpty) {

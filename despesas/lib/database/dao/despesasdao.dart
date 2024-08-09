@@ -9,7 +9,7 @@ Future<int> insertDespesas(Despesas despesas) async {
       conflictAlgorithm: ConflictAlgorithm.replace);
 }
 
-Future<List<Map>> findall() async {
+Future<List<Map<String, dynamic>>> findall() async {
   Database db = await getDatabase();
   List<Map<String, dynamic>> dados = await db.query('despesas');
   dados.forEach((despesas) {
@@ -27,10 +27,7 @@ Future<int> deleteByID(int id) async {
 Future<List<Map<String, dynamic>>> selectData(String data) async {
   debugPrint("Procurando: $data");
   Database db = await getDatabase();
-  List<Map<String, dynamic>> result = await db.query(
-    'despesas', 
-    where: "data = ?", 
-    whereArgs: [data]
-  ); 
+  List<Map<String, dynamic>> result =
+      await db.query('despesas', where: "data = ?", whereArgs: [data]);
   return result;
 }

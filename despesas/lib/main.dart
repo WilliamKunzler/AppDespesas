@@ -14,7 +14,6 @@ void main() async {
   }
 
   debugPrint(findall().toString());
-  List dados = await findall();
 
   initializeDateFormatting().then((_) => runApp(MaterialApp(
         home: TelaPrincipal(),
