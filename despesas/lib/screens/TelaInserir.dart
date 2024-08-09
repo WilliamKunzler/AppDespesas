@@ -41,7 +41,7 @@ class _TelaInserirState extends State<TelaInserir> {
 
   TextEditingController descpt = TextEditingController();
   TextEditingController valor = TextEditingController();
-  TextEditingController pressed = TextEditingController();
+  String? _pressedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,7 @@ class _TelaInserirState extends State<TelaInserir> {
                               selected == index ? Colors.black : cor[index],
                           foregroundColor: Colors.white),
                       onPressed: () {
-                        String pressed = area[index];
+                        _pressedValue = area[index];
                         setState(() {
                           selected = selected == index ? null : index;
                         });
@@ -130,8 +130,12 @@ class _TelaInserirState extends State<TelaInserir> {
             ),
             OutlinedButton(
                 onPressed: () {
-                  print(pressed);
-                  if (valor.text == "" || descpt.text == "") {
+                  print(valor.text);
+                  print(descpt.text);
+                  print(_pressedValue);
+                  if (valor.text == "" ||
+                      descpt.text == "" ||
+                      _pressedValue == null) {
                     final snackBar = SnackBar(
                       content: const Text('Campos não preenchidos!!'),
                     );
