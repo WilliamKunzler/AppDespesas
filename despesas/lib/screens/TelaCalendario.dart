@@ -91,29 +91,32 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                     topRight: Radius.circular(16.0),
                   ),
                 ),
-                child: FutureBuilder<List<Map<String, dynamic>>>(
-                  future: _despesasFuture,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text("Erro: ${snapshot.error}"));
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Center(child: Text("Nenhuma despesa encontrada."));
-                    } else {
-                      return ListView(
-                        controller: scrollController,
-                        children: snapshot.data!.map((item) {
-                          return ListTile(
-                            title: Text(" ${item['descricao']}"),
-                            subtitle: Text("${item['data']}"),
-                            leading: const Icon(Icons.access_alarm),
-                            trailing: Text("${item['valor']}"),
-                          );
-                        }).toList(),
-                      );
-                    }
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: FutureBuilder<List<Map<String, dynamic>>>(
+                    future: _despesasFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text("Erro: ${snapshot.error}"));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return Center(child: Text("Nenhuma despesa encontrada."));
+                      } else {
+                        return ListView(
+                          controller: scrollController,
+                          children: snapshot.data!.map((item) {
+                            return ListTile(
+                              title: Text(" ${item['descricao']}"),
+                              subtitle: Text("${item['data']}"),
+                              leading: const Icon(Icons.access_alarm),
+                              trailing: Text("${item['valor']}"),
+                            );
+                          }).toList(),
+                        );
+                      }
+                    },
+                  ),
                 ),
               );
             },
