@@ -106,7 +106,10 @@ class _TelaCalendarioState extends State<TelaCalendario> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TelaCalendario()));
                 },
                 icon: Icon(
                   Icons.chevron_left_rounded,
@@ -116,7 +119,8 @@ class _TelaCalendarioState extends State<TelaCalendario> {
               Spacer(),
               IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => TelaGrafico()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TelaGrafico()));
                 },
                 icon: Icon(
                   Icons.bar_chart,
