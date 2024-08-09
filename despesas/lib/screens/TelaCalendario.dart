@@ -13,6 +13,14 @@ class _TelaCalendarioState extends State<TelaCalendario> {
   DateTime _focusedDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
   Future<List<Map<String, dynamic>>>? _despesasFuture;
+    Map icones = {
+    "Casa": Icons.home,
+    "Alimentação" : Icons.local_pizza,
+    "Saúde" : Icons.health_and_safety,
+    "Tranporte": Icons.emoji_transportation,
+    "Presentes": Icons.card_giftcard_sharp,
+    "Outros": Icons.add,
+    };
 
   @override
   Widget build(BuildContext context) {
@@ -108,10 +116,16 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                           controller: scrollController,
                           children: snapshot.data!.map((item) {
                             return ListTile(
-                              title: Text(" ${item['descricao']}"),
-                              subtitle: Text("${item['data']}"),
-                              leading: const Icon(Icons.access_alarm),
-                              trailing: Text("${item['valor']}"),
+                              title: Text(" ${item['descricao']}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 19)),
+                                  subtitle: Text("${item['data']}",
+                                      style: TextStyle(fontSize: 15)),
+                                  leading: const Icon(Icons.access_alarm),
+                                  trailing: Text("R\$ ${item['valor']}",
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 17)),
                             );
                           }).toList(),
                         );
