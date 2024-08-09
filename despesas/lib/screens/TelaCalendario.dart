@@ -3,7 +3,6 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:despesas/screens/TelaGrafico.dart';
 import 'package:despesas/database/dao/despesasdao.dart';
 
-
 class TelaCalendario extends StatefulWidget {
   @override
   _TelaCalendarioState createState() => _TelaCalendarioState();
@@ -13,8 +12,7 @@ class _TelaCalendarioState extends State<TelaCalendario> {
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  List<String> despesas = []; 
-
+  List<String> despesas = [];
 
   @override
   Widget build(BuildContext context) {
@@ -50,22 +48,25 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                     return isSameDay(_selectedDay, day);
                   },
                   onDaySelected: (selectedDay, focusedDay) async {
-                      setState(() {
-                        _selectedDay = selectedDay;
-                        _focusedDay = focusedDay;
-                      });
+                    setState(() {
+                      _selectedDay = selectedDay;
+                      _focusedDay = focusedDay;
+                    });
 
-                      // Formata a data selecionada para o formato necessário pelo banco de dados
-                      String formattedDate = selectedDay.toString().split(' ')[0];
-                      List<Map<String, dynamic>> results = await selectData(formattedDate);
-                      if (results.isNotEmpty) {
-                        for (var row in results) {
-                          print("Despesa encontrada: ${row['id']} - ${row['valor']}");
-                        }
-                      } else {
-                        print("Nenhuma despesa encontrada para a data $formattedDate.");
+                    // Formata a data selecionada para o formato necessário pelo banco de dados
+                    String formattedDate = selectedDay.toString().split(' ')[0];
+                    List<Map<String, dynamic>> results =
+                        await selectData(formattedDate);
+                    if (results.isNotEmpty) {
+                      for (var row in results) {
+                        print(
+                            "Despesa encontrada: ${row['id']} - ${row['valor']}");
                       }
-                    },
+                    } else {
+                      print(
+                          "Nenhuma despesa encontrada para a data $formattedDate.");
+                    }
+                  },
                   onFormatChanged: (format) {
                     if (_calendarFormat != format) {
                       setState(() {
@@ -103,9 +104,7 @@ class _TelaCalendarioState extends State<TelaCalendario> {
                 ),
                 child: ListView(
                   controller: scrollController,
-                  children: [
-  
-                  ],
+                  children: [],
                 ),
               );
             },
