@@ -131,7 +131,7 @@ class _TelaInserirState extends State<TelaInserir> {
             OutlinedButton(
                 onPressed: () {
                   print(pressed);
-                  if (valor.text == "" || descpt.text == "" || pressed == "") {
+                  if (valor.text == "" || descpt.text == "") {
                     final snackBar = SnackBar(
                       content: const Text('Campos não preenchidos!!'),
                     );
