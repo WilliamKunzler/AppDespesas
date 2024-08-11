@@ -31,3 +31,11 @@ Future<List<Map<String, dynamic>>> selectData(String data) async {
       await db.query('despesas', where: "data = ?", whereArgs: [data]);
   return result;
 }
+
+Future<List<Map<String, dynamic>>> selectArea(String area) async {
+  debugPrint("Procurando: $area");
+  Database db = await getDatabase();
+  List<Map<String, dynamic>> result =
+      await db.query('despesas', where: "area = ?", whereArgs: [area]);
+  return result;
+}

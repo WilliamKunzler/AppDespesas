@@ -70,7 +70,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               child: Row(
                 children: [
                   OutlinedButton(
-                      onPressed: () {}, child: const Text('Ver Gráficos')),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TelaGrafico()));
+                      },
+                      child: const Text('Ver Gráficos')),
                   Spacer(),
                   Icon(
                     Icons.pie_chart,
@@ -122,10 +128,10 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                                   onDismissed: (direction) {
                                     // Aqui você pode manipular o evento de exclusão, como remover o item da lista.
                                     setState(() {
-                                      dados.remove(
-                                          item); // Remove o item da lista de dados.
+                                      deleteByID(item['id']);
                                     });
                                   },
+                                  background: Container(color: Colors.red),
                                   child: ListTile(
                                     title: Text(" ${item['descricao']}",
                                         style: TextStyle(
