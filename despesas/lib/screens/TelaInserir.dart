@@ -140,12 +140,13 @@ class _TelaInserirState extends State<TelaInserir> {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   } else {
+                    String valorText = valor.text.replaceAll(',', '.');
                     setState(() {
                       DateTime dataAtual = DateTime.now();
                       String dataSomente =
                           "${dataAtual.day.toString().padLeft(2, '0')}-${dataAtual.month.toString().padLeft(2, '0')}-${dataAtual.year}";
                       String descpts = descpt.text;
-                      double valores = double.tryParse(valor.text) ?? 0;
+                      double valores = double.tryParse(valorText) ?? 0;
                       String _pressedValues = _pressedValue.toString();
                       insertDespesas(Despesas(
                           descricao: descpts,
