@@ -53,10 +53,10 @@ class TelaGrafico extends StatefulWidget {
 
 String opcao = "";
 
-enum Calendar { diario, semanal, mensal, anual }
+// enum Calendar { diario, semanal, mensal, anual }
 
 class _TelaGraficoState extends State<TelaGrafico> {
-  Calendar calendarView = Calendar.diario;
+  // Calendar calendarView = Calendar.diario;
   bool circular = true;
   bool barra = false;
 
@@ -317,7 +317,7 @@ class _BarrasState extends State<Barras> {
           barRods: [
             BarChartRodData(
                 y: valores[a],
-                width: 15,
+                width: 12,
                 colors: [_getColorForArea(a)],
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -386,6 +386,7 @@ class _BarrasState extends State<Barras> {
             child: AspectRatio(
               aspectRatio: 1.3,
               child: BarChart(BarChartData(
+                alignment: BarChartAlignment.spaceAround,
                 titlesData: FlTitlesData(
                     bottomTitles: SideTitles(
                       showTitles: false,

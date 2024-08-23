@@ -57,7 +57,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                         ),
                         Text(
                           "Ao seu aplicativo pessoal \nde organização financeira!",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 18),
                         ),
                       ],
                     ),
