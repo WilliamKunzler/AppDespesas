@@ -2,13 +2,13 @@ Este aplicativo foi desenvolvido para ajudar na gestão financeira pessoal,
 permitindo que os usuários registrem e categorizem suas despesas.
 
 **Telas:**
-![WhatsApp Image 2024-09-04 at 09 11 47 (2)](https://github.com/user-attachments/assets/47863cf5-e0f3-4ec8-b65a-e9132a363ed0)
-![WhatsApp Image 2024-09-04 at 09 11 47 (1)](https://github.com/user-attachments/assets/608ae545-2781-468a-b074-5bce2e5ea084)
-![WhatsApp Image 2024-09-04 at 09 11 47](https://github.com/user-attachments/assets/c815bed4-4942-4abe-8227-8f2f09d90f49)
-![WhatsApp Image 2024-09-04 at 09 11 46 (1)](https://github.com/user-attachments/assets/10591c3f-ba6f-43c7-9d6e-d901b12a0462)
-![WhatsApp Image 2024-09-04 at 09 11 46](https://github.com/user-attachments/assets/99fa4794-0b60-43e8-93ec-39e3377a86de)
-
-
+<p align="center">
+  ![WhatsApp Image 2024-09-04 at 09 16 09 (2)](https://github.com/user-attachments/assets/b07ad41a-2443-4c4b-9654-304886d7fde1)
+  ![WhatsApp Image 2024-09-04 at 09 16 09 (1)](https://github.com/user-attachments/assets/d6de7b4c-ccae-4e58-b6f6-35ce111fc968)
+  ![WhatsApp Image 2024-09-04 at 09 16 09](https://github.com/user-attachments/assets/9daa2697-a028-4b95-a964-3b5d4b6bf6ca)
+  ![WhatsApp Image 2024-09-04 at 09 16 10 (1)](https://github.com/user-attachments/assets/c85925ea-deb0-4fad-b6c0-e19089a7b4d3)
+  ![WhatsApp Image 2024-09-04 at 09 16 10](https://github.com/user-attachments/assets/5934eff3-0705-4d69-8f40-c549334f8c60)
+</p>
 
 **Funcionalidades:** 
 - Adição de gastos;
