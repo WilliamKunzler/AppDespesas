@@ -19,7 +19,7 @@ permitindo que os usuários registrem e categorizem suas despesas.
 📅 Calendário para raastrear gastos diários;
 
 
-<br>
+<hr>
 
 
 O app proporciona uma ajuda na organização financeira para otimizar o gerenciamento do dinheiro e entender melhor o destino das despesas.
