@@ -16,7 +16,7 @@ permitindo que os usuários registrem e categorizem suas despesas.
 
 📊 Visualização de gráficos interativos;
 
-📅 Calendário para raastrear gastos diários;
+📅 Calendário para rastrear gastos diários;
 
 
 <hr>
